@@ -2,34 +2,11 @@ const randomColor = require('randomcolor');
 const chalk = require('chalk');
 const readline = require('readline-sync');
 
-// Checks if ratio is in proper format (max: 99x99; min: 9x31)
-const regex = new RegExp('^\\d{1,2}x\\d{1,2}$');
-
-// ---------------- Without any argument ----------------
-if (!process.argv[2]) {
-  drawBox();
-} else if (process.argv[2]) {
-  //  ---------------- With argument ask ----------------
-  if (process.argv[2] === 'ask') {
-    const color = readline.question('Color: ');
-    const lum = readline.question('Luminosity: ');
-    let colorhex = setColor(color, lum);
-    drawBox(colorhex);
-    //  -------------- With box size argument (e.g. 10x30) ----------------
-  } else if (regex.test(process.argv[2])) {
-    if (
-      process.argv[2].split('x')[0] < 9 ||
-      process.argv[2].split('x')[1] < 31
-    ) {
-      console.log('Minium: 9x31');
-    } else {
-      drawBox(
-        undefined,
-        process.argv[2].split('x')[0],
-        process.argv[2].split('x')[1],
-      );
-    }
-  }
+//  ---------------- returns a color as a hash value  ----------------
+function setColor(hue, luminosity) {
+  !hue ? (hue = 'random') : (hue = hue);
+  !luminosity ? (luminosity = 31) : (luminosity = luminosity);
+  return randomColor({ luminosity: luminosity, hue: hue });
 }
 
 /*
@@ -174,9 +151,32 @@ function drawBox(color, lines, characters) {
   console.log(boxString);
 }
 
-//  ---------------- returns a color as a hash value  ----------------
-function setColor(hue, luminosity) {
-  !hue ? (hue = 'random') : (hue = hue);
-  !luminosity ? (luminosity = 31) : (luminosity = luminosity);
-  return randomColor({ luminosity: luminosity, hue: hue });
+// Checks if ratio is in proper format (max: 99x99; min: 9x31)
+const regex = new RegExp('^\\d{1,2}x\\d{1,2}$');
+
+// ---------------- Without any argument ----------------
+if (!process.argv[2]) {
+  drawBox();
+} else if (process.argv[2]) {
+  //  ---------------- With argument ask ----------------
+  if (process.argv[2] === 'ask') {
+    const color = readline.question('Color: ');
+    const lum = readline.question('Luminosity: ');
+    const colorhex = setColor(color, lum);
+    drawBox(colorhex);
+    //  -------------- With box size argument (e.g. 10x30) ----------------
+  } else if (regex.test(process.argv[2])) {
+    if (
+      process.argv[2].split('x')[0] < 9 ||
+      process.argv[2].split('x')[1] < 31
+    ) {
+      console.log('Minium: 9x31');
+    } else {
+      drawBox(
+        undefined,
+        process.argv[2].split('x')[0],
+        process.argv[2].split('x')[1],
+      );
+    }
+  }
 }
