@@ -1,0 +1,13 @@
+{
+  "name": "randomcolorgenerator",
+  "version": "1.0.0",
+  "description": "Prints a string with a specific color",
+  "main": "index.js",
+  "repository": "https://github.com/uebriges/randomcolorgenerator.git",
+  "author": "Uebriges <uebriges@gmx.at>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "randomcolor": "^0.6.2"
+  }
+}
