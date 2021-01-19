@@ -4,8 +4,8 @@ const readline = require('readline-sync');
 
 //  ---------------- returns a color as a hash value  ----------------
 function setColor(hue, luminosity) {
-  !hue ? (hue = 'random') : (hue = hue);
-  !luminosity ? (luminosity = 31) : (luminosity = luminosity);
+  hue = !hue ? 'random' : hue;
+  luminosity = !luminosity ? 'random' : luminosity;
   return randomColor({ luminosity: luminosity, hue: hue });
 }
 
@@ -17,14 +17,12 @@ function setColor(hue, luminosity) {
 */
 function drawBox(color, lines, characters) {
   // If no lines or characters given -> default = 9x31
-  !lines ? (lines = 9) : (lines = lines);
-  !characters ? (characters = 31) : (characters = characters);
+  lines = !lines ? 9 : lines;
+  characters = !characters ? 31 : characters;
 
   // If no color given -> default = random
   if (!color) {
     color = setColor();
-  } else {
-    color = color;
   }
 
   let boxString = '';
