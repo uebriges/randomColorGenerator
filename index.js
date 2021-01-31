@@ -2,27 +2,16 @@ const randomColor = require('randomcolor');
 const chalk = require('chalk');
 const readline = require('readline-sync');
 
-//  ---------------- returns a color as a hash value  ----------------
-function setColor(hue, luminosity) {
-  hue = !hue ? 'random' : hue;
-  luminosity = !luminosity ? 'random' : luminosity;
-  return randomColor({ luminosity: luminosity, hue: hue });
-}
-
 /*
   Prints a box depending on how it is called
   1) without parameters: color is generated randomly. Lines and characters are default (9x31)
   2) with parameter "color": color is generated based on user input. Lines and characters are default (9x31)
   3) with parameters "lines" and "characters": Draws a box with the hex value placed in an "inner box". The inner box stays the same size. The border adjusts.
 */
-function drawBox(color, lines, characters) {
-  // If no lines or characters given -> default = 9x31
-  lines = !lines ? 9 : lines;
-  characters = !characters ? 31 : characters;
-
+function drawBox(color, lines = 9, characters = 31) {
   // If no color given -> default = random
   if (!color) {
-    color = setColor();
+    color = randomColor({});
   }
 
   let boxString = '';
@@ -160,15 +149,15 @@ if (!process.argv[2]) {
   if (process.argv[2] === 'ask') {
     const color = readline.question('Color: ');
     const lum = readline.question('Luminosity: ');
-    const colorhex = setColor(color, lum);
-    drawBox(colorhex);
+    const colorHex = randomColor({ luminosity: lum, hue: color });
+    drawBox(colorHex);
     //  -------------- With box size argument (e.g. 10x30) ----------------
   } else if (regex.test(process.argv[2])) {
     if (
       process.argv[2].split('x')[0] < 9 ||
       process.argv[2].split('x')[1] < 31
     ) {
-      console.log('Minium: 9x31');
+      console.log('Minimum: 9x31');
     } else {
       drawBox(
         undefined,
@@ -176,5 +165,11 @@ if (!process.argv[2]) {
         process.argv[2].split('x')[1],
       );
     }
+  } else {
+    const colorHex = randomColor({
+      luminosity: process.argv[3],
+      hue: process.argv[2],
+    });
+    drawBox(colorHex);
   }
 }
