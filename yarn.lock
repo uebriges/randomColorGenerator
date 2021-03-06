@@ -129,6 +129,13 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
+"@types/chalk@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@types/chalk/-/chalk-2.2.0.tgz#b7f6e446f4511029ee8e3f43075fb5b73fbaa0ba"
+  integrity sha512-1zzPV9FDe1I/WHhRkf9SNgqtRJWZqrBWgu7JGveuHmmyR9CnAPCie2N/x+iHrgnpYBIcCJWHBoMRv2TRWktsvw==
+  dependencies:
+    chalk "*"
+
 "@types/json-schema@^7.0.3":
   version "7.0.6"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
@@ -143,6 +150,16 @@
   version "2.4.0"
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
+
+"@types/randomcolor@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@types/randomcolor/-/randomcolor-0.5.5.tgz#6d8af5f87c6bec1e338ae2d0739056cc2e5720fd"
+  integrity sha512-PywdYff3F8lGO3BggkCXaPFH0Ue/2Y7xliihoQNkxCGPJ4w7VTMfgcmSMIE6gOVAEu9Wx42JRSuRREVG3AUrtg==
+
+"@types/readline-sync@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/readline-sync/-/readline-sync-1.4.3.tgz#eac55a39d5a349912062c9e5216cd550c07fd9c8"
+  integrity sha512-YP9NVli96E+qQLAF2db+VjnAUEeZcFVg4YnMgr8kpDUFwQBnj31rPLOVHmazbKQhaIkJ9cMHsZhpKdzUeL0KTg==
 
 "@typescript-eslint/eslint-plugin@4.0.0":
   version "4.0.0"
@@ -298,10 +315,10 @@
     "@typescript-eslint/types" "4.14.0"
     eslint-visitor-keys "^2.0.0"
 
-"@upleveled/eslint-config-upleveled@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/@upleveled/eslint-config-upleveled/-/eslint-config-upleveled-1.5.1.tgz#8f70bd783956963793468b2e9e420eb8d1c13dcb"
-  integrity sha512-ebVdAgY2pUSbBKhREIfdHYHrwsciIyjUfY0VrOYOm0S+xJBBo95ME0BTmwAUsP6eFs4DmQiBLEISUae9ZRzUHQ==
+"@upleveled/eslint-config-upleveled@1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@upleveled/eslint-config-upleveled/-/eslint-config-upleveled-1.7.2.tgz#3dd2e4336d9d5d1ab2baf619125e70abf9930dbb"
+  integrity sha512-IywarLb/0Z56FKUkwZr6yGLJuvuNv3lWkj769yS8j0IK/rXkOkmLg+r/rbLzwtsur8o4jqtNQV6FJfSDjhiMAg==
 
 acorn-jsx@^5.3.1:
   version "5.3.1"
@@ -479,6 +496,14 @@ callsites@^3.0.0:
   resolved "https://registry.npmjs.org/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
+chalk@*, chalk@^4.0.0, chalk@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
+  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 chalk@^2.0.0:
   version "2.4.2"
   resolved "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -487,14 +512,6 @@ chalk@^2.0.0:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
-
-chalk@^4.0.0, chalk@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
-  dependencies:
-    ansi-styles "^4.1.0"
-    supports-color "^7.1.0"
 
 ci-info@^2.0.0:
   version "2.0.0"
