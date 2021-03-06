@@ -3,11 +3,41 @@ const chalk = require('chalk');
 const readline = require('readline-sync');
 
 // Prints a box depending on how it is called
-function drawBox(color, lines = 9, characters = 31) {
-  // If no color given -> default = random
-  if (!color) {
-    color = randomColor({});
-  }
+function drawBox(color = randomColor(), lines = 9, characters = 31) {
+  // Is there is an even number of characters given?
+  const evenNumberOfCharacters = characters % 2 === 0;
+
+  // String for empty inner box if even nr. of lines is given
+  // e.g. ######          ######
+  const evenNrOfLinesEmptyInnerBox = chalk.hex(color)(
+    `#`.repeat(characters / 2 - 20 / 2) +
+      '                    ' +
+      '#'.repeat(characters / 2 - 20 / 2),
+  );
+
+  // String for empty inner box if odd nr. of lines is given
+  // e.g. #######          ######
+  const oddNrOfLinesEmptyInnerBox = chalk.hex(color)(
+    `#`.repeat(characters / 2 - 20 / 2 + 1) +
+      '                    ' +
+      '#'.repeat(characters / 2 - 20 / 2),
+  );
+
+  // String for color code inner box if even nr. of lines is given
+  // e.g. #######     #403944     ######
+  const evenNrOfLInesColorCodeInnerBox = chalk.hex(color)(
+    `#`.repeat(characters / 2 - 20 / 2) +
+      `      ${color}       ` +
+      '#'.repeat(characters / 2 - 20 / 2),
+  );
+
+  // String for color code inner box if odd nr. of lines is given
+  // e.g. ########     #403944     ######
+  const oddNrOfLInesColorCodeInnerBox = chalk.hex(color)(
+    `#`.repeat(characters / 2 - 20 / 2 + 1) +
+      `      ${color}       ` +
+      '#'.repeat(characters / 2 - 20 / 2),
+  );
 
   let boxString = '';
 
@@ -20,47 +50,23 @@ function drawBox(color, lines = 9, characters = 31) {
       } else if (i > lines / 2 - 1 && i <= lines / 2 + 2) {
         // ---------------- draw the inner box + right and left border ----------------
         if (i === lines / 2) {
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLinesEmptyInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2 + 1) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+            boxString += oddNrOfLinesEmptyInnerBox;
           }
         } else if (i === lines / 2 + 2) {
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLinesEmptyInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2 + 1) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+            boxString += oddNrOfLinesEmptyInnerBox;
           }
         } else {
           // console.log('i: ', i);
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2) +
-                `      ${color}       ` +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLInesColorCodeInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2 + 1) +
-                `      ${color}       ` +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+            boxString += oddNrOfLInesColorCodeInnerBox;
           }
         }
       } else if (i > lines / 2 + 1) {
@@ -83,46 +89,22 @@ function drawBox(color, lines = 9, characters = 31) {
         i <= Math.round(lines / 2) + 1
       ) {
         if (i === Math.round(lines / 2) - 1) {
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLinesEmptyInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2 + 1) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+            boxString += oddNrOfLinesEmptyInnerBox;
           }
         } else if (i === Math.round(lines / 2) + 1) {
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLinesEmptyInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(characters / 2 - 20 / 2 + 1) +
-                '                    ' +
-                '#'.repeat(characters / 2 - 20 / 2),
-            );
+            boxString += oddNrOfLinesEmptyInnerBox;
           }
         } else if (i === Math.round(lines / 2)) {
-          if (characters % 2 === 0) {
-            boxString += chalk.hex(color)(
-              `#`.repeat(Math.round(characters / 2) - 20 / 2) +
-                `      ${color}       ` +
-                '#'.repeat(Math.round(characters / 2) - 20 / 2),
-            );
+          if (evenNumberOfCharacters) {
+            boxString += evenNrOfLInesColorCodeInnerBox;
           } else {
-            boxString += chalk.hex(color)(
-              `#`.repeat(Math.round(characters / 2) - 20 / 2) +
-                `      ${color}       ` +
-                '#'.repeat(Math.round(characters / 2) - 20 / 2 - 1),
-            );
+            boxString += oddNrOfLInesColorCodeInnerBox;
           }
         }
       } else if (i > lines / 2 + 1) {
